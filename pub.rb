@@ -2,15 +2,15 @@ class Pub
 
   attr_reader :name, :till
 
-  def initialize(name, till, drinks)
+  def initialize(name, till, stock)
     @name = name
     @till = till
-    @drinks = drinks || []
+    @stock = stock
 
   end
 
   def has_drinks
-    @drinks.size
+    @stock.length
   end
 
   def increase_till(drink)
@@ -36,7 +36,32 @@ def check_age_and_drunkeness(customer, drink)
     return "You're too young!"
   elsif customer.drunkeness >= 10
     return "You're too drunk!"
-  end 
+  end
 end
+
+def total_stock
+  total = 0
+    for drink in @stock
+      total += drink[:stock]
+    end
+    return total
+
+end
+
+def value_of_total_stock
+  total_value = 0
+  for drink in @stock
+    total_value += (drink[:name].price * drink[:stock])
+  end
+  return total_value
+end
+
+  def decrease_stock(drink)
+    for item in @stock
+      if item == drink
+        drink[:stock] -= 1
+      end
+    end
+  end
 
 end

@@ -13,9 +13,11 @@ class TestPub < MiniTest::Test
     @drink2 = Drink.new("wine", 10, 1)
     @drink3 = Drink.new("Cider", 7, 1)
 
-    @drinks = [@drink1, @drink2, @drink3]
+    @stock = [{name: @drink1, stock: 10},
+      {name: @drink2, stock: 10},
+      {name: @drink3, stock: 10}]
 
-    @pub = Pub.new("Queens Arms", 0, @drinks)
+    @pub = Pub.new("Queens Arms", 0, @stock)
 
     @customer = Customer.new("Bob", 100, 18, 0)
     @customer2 = Customer.new("Alice", 100, 17, 0)
@@ -78,5 +80,22 @@ class TestPub < MiniTest::Test
   def test_check_age_and_drunkeness__too_drunk
     assert_equal("You're too drunk!", @pub.check_age_and_drunkeness(@customer3, @drink1))
   end
+
+  def test_total_stock
+    assert_equal(30, @pub.total_stock)
+  end
+
+  def test_value_of_total_stock
+    assert_equal(220, @pub.value_of_total_stock)
+  end
+
+  def test_decrease_stock_and_value
+    @pub.decrease_stock_and_value(@drink1)
+    assert_equal(29, @pub.total_stock)
+    # assert_equal(215, @pub.value_of_total_stock)
+  end
+
+
+
 
 end
