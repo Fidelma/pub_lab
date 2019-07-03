@@ -58,7 +58,7 @@ class TestCustomer < MiniTest::Test
   end
 
   def test_reduce_stock_when_customer_buys_drink
-    @pub.reduce_stock_when_customer_buys_drink(@drink1, @customer, @pub)
+    @customer.reduce_stock_when_customer_buys_drink(@drink1, @customer, @pub)
     assert_equal(29, @pub.total_stock)
     assert_equal(215, @pub.value_of_total_stock)
     assert_equal(5, @pub.till)

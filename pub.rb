@@ -57,11 +57,23 @@ def value_of_total_stock
 end
 
   def decrease_stock(drink)
+    total = 0
     for item in @stock
-      if item == drink
-        drink[:stock] -= 1
-      end
+      if item[:name] == drink
+      total += (item[:stock] -= 1)
+    else
+      total += item[:stock]
     end
   end
+    return total
+  end
+
+  def decrease_stock_and_value(drink)
+    decrease_stock(drink)
+    value_of_total_stock
+  end 
+
+
+
 
 end

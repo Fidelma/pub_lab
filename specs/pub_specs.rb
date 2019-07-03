@@ -89,10 +89,18 @@ class TestPub < MiniTest::Test
     assert_equal(220, @pub.value_of_total_stock)
   end
 
+  def test_decrease_stock
+    assert_equal(29, @pub.decrease_stock(@drink1))
+  end
+
+  # def test_decrease_value_of_total_stock
+  #   assert_equal(215, @pub.decrease_value(@drink1))
+  # end
+
   def test_decrease_stock_and_value
     @pub.decrease_stock_and_value(@drink1)
     assert_equal(29, @pub.total_stock)
-    # assert_equal(215, @pub.value_of_total_stock)
+    assert_equal(215, @pub.value_of_total_stock)
   end
 
 
